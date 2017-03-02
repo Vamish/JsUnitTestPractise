@@ -39,6 +39,27 @@ function getEconomyParkingFeeByMinute(minute) {
      * 每小时2元，每天上限9元
      * 第七天免费
      */
+
+    // 去除每个第七天的时间
+    if (minute >= 7 * 24 * 60) {
+        minute = minute - Math.floor(minute / 7 / 24 / 60) * 24 * 60;
+    }
+
+    // 计算余剩天数
+    let days = Math.floor(minute / 24 / 60),
+        // 去除余剩天数后剩下的累积时间
+        leftMinute = minute - 24 * 60 * days,
+        // 累积时间范围统计
+        dailyChargeRange;
+    if (leftMinute) {
+        dailyChargeRange = (Math.floor(leftMinute / 60) > 1) ? leftMinute : 60;
+    } else {
+        dailyChargeRange = leftMinute;
+    }
+
+    dailyChargeRange = (dailyChargeRange > 4.5 * 60) ? 4.5 * 60 : dailyChargeRange;
+
+    return days * 9 + (dailyChargeRange / 60) * 2;
 }
 
 function getLongTermIndoorParkingFeeByMinute(minute) {

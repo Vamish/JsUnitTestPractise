@@ -119,7 +119,7 @@ describe("Economy parking: ", function () {
         expect(getEconomyParkingFeeByMinute(24 * 60 + 7 * 60)).toBe(18);
     });
 
-    xit("3 days", function () {
+    it("3 days", function () {
         expect(getEconomyParkingFeeByMinute(3 * 24 * 60)).toBe(27);
     });
 
