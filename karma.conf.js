@@ -15,8 +15,8 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'js/*.js',
-            'test/**/*.spec.js'
+            "js/*.js",
+            "test/*.spec.js"
         ],
 
 
@@ -27,9 +27,29 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            "js/*.js": ['coverage']
+            "js/*.js": ['coverage'],
+            "test/*.spec.js": ['webpack']
         },
 
+        webpack: {
+            module: {
+                loaders: [
+                    {
+                        test: /\.js/,
+                        exclude: /node_modules/,
+                        loader: 'babel-loader',
+                        query: {
+                            presets: 'es2015'
+                        }
+                    }
+                ]
+            },
+            watch: true
+        },
+
+        webpackServer: {
+            noInfo: true
+        },
 
         // optionally, configure the reporter
         coverageReporter: {
@@ -40,7 +60,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress', 'coverage', 'kjhtml'],
 
 
         // web server port

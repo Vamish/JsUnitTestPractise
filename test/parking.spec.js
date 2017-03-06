@@ -1,4 +1,4 @@
-describe("Valet parking: ", function () {
+xdescribe("Valet parking: ", function () {
 
     it("30 min", function () {
         expect(getValetParkingFeeByMinute(30)).toBe(12);
@@ -38,7 +38,7 @@ describe("Valet parking: ", function () {
 
 });
 
-describe("Short-term parking: ", function () {
+xdescribe("Short-term parking: ", function () {
 
     it("30 min", function () {
         expect(getShortTermParkingFeeByMinute(30)).toBe(2);
@@ -48,11 +48,11 @@ describe("Short-term parking: ", function () {
         expect(getShortTermParkingFeeByMinute(60)).toBe(2);
     });
 
-    xit("1 hour and 30 min", function () {
+    it("1 hour and 30 min", function () {
         expect(getShortTermParkingFeeByMinute(60 + 30)).toBe(3);
     });
 
-    xit("2 hour", function () {
+    it("2 hour", function () {
         expect(getShortTermParkingFeeByMinute(2 * 60)).toBe(4);
     });
 
@@ -77,7 +77,7 @@ describe("Short-term parking: ", function () {
     });
 });
 
-describe("Economy parking: ", function () {
+xdescribe("Economy parking: ", function () {
 
     it("30 min", function () {
         expect(getEconomyParkingFeeByMinute(30)).toBe(2);
@@ -142,7 +142,7 @@ describe("Economy parking: ", function () {
 
 });
 
-describe("Long-term indoor parking: ", function () {
+xdescribe("Long-term indoor parking: ", function () {
 
     it("30 min", function () {
         expect(getLongTermIndoorParkingFeeByMinute(30)).toBe(2);
@@ -201,7 +201,7 @@ describe("Long-term indoor parking: ", function () {
     });
 });
 
-describe("Long-term outdoor parking: ", function () {
+xdescribe("Long-term outdoor parking: ", function () {
 
     it("30 min", function () {
         expect(getLongTermOutdoorParkingFeeByMinute(30)).toBe(2);
@@ -250,4 +250,28 @@ describe("Long-term outdoor parking: ", function () {
     it("3 weeks", function () {
         expect(getLongTermOutdoorParkingFeeByMinute(3 * 7 * 24 * 60)).toBe(180);
     });
+});
+
+xdescribe("Get valid minutes", function () {
+
+    it("1 day", function () {
+        expect(getValidMinute(60)).toBe(60);
+    });
+
+    it("6 days", function () {
+        expect(getValidMinute(6 * 60)).toBe(6 * 60);
+    });
+
+    it("6 days and 1 hour", function () {
+        expect(getValidMinute(6 * 24 * 60 + 60)).toBe(6 * 24 * 60);
+    });
+
+    it("7 days", function () {
+        expect(getValidMinute(7 * 24 * 60)).toBe(6 * 24 * 60);
+    });
+
+    it("8 days and 3 hours", function () {
+        expect(getValidMinute(8 * 24 * 60 + 3 * 60)).toBe(7 * 24 * 60 + 3 * 60);
+    });
+
 });

@@ -4,17 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "unit test": "karma start"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.15.3",
+    "axios-mock-adapter": "^1.7.1",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
+    "jquery": "^3.1.1",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
-    "karma-jasmine-html-reporter": "^0.2.2"
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-webpack": "^2.0.2",
+    "lodash": "^4.17.4",
+    "mockjs": "^1.0.1-beta3",
+    "webpack": "^2.2.1"
   }
 }

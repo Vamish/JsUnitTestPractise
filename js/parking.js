@@ -68,6 +68,23 @@ function getLongTermIndoorParkingFeeByMinute(minute) {
      * 每小时2元，每天收费上限12元
      * 第七天免费
      */
+
+    if (minute > 6 * 24 * 60) {
+        minute = minute - Math.floor(minute / 7 / 24 / 60) * 24 * 60;
+    }
+
+    let days = Math.floor(minute / 24 / 60),
+        leftMinute = minute - 24 * 60 * days,
+        dailyChargeRange;
+    if (leftMinute) {
+        dailyChargeRange = (Math.floor(leftMinute / 60) > 1) ? leftMinute : 60;
+    } else {
+        dailyChargeRange = leftMinute;
+    }
+
+    dailyChargeRange = (dailyChargeRange > 6 * 60) ? 6 * 60 : dailyChargeRange;
+
+    return days * 12 + (dailyChargeRange / 60) * 2;
 }
 
 function getLongTermOutdoorParkingFeeByMinute(minute) {
@@ -76,4 +93,31 @@ function getLongTermOutdoorParkingFeeByMinute(minute) {
      * 每小时2元，每天收费上限10元
      * 第七天免费
      */
+
+    if (minute > 6 * 24 * 60) {
+        minute = minute - Math.floor(minute / 7 / 24 / 60) * 24 * 60;
+    }
+
+    let days = Math.floor(minute / 24 / 60),
+        leftMinute = minute - 24 * 60 * days,
+        dailyChargeRange;
+    if (leftMinute) {
+        dailyChargeRange = (Math.floor(leftMinute / 60) > 1) ? leftMinute : 60;
+    } else {
+        dailyChargeRange = leftMinute;
+    }
+
+    dailyChargeRange = (dailyChargeRange > 5 * 60) ? 5 * 60 : dailyChargeRange;
+
+    return days * 10 + (dailyChargeRange / 60) * 2;
+}
+
+function getValidMinute(minute) {
+
+    let _min;
+
+    if (Math.floor(minute / 7 / 24 / 60) > 1) {
+
+    }
+
 }
